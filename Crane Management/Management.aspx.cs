@@ -127,7 +127,7 @@ public partial class _Default : Page
 
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    string strSelect = "SELECT * FROM [DataWarehouse].[dbo].[vw_ProjectX_CraneManagement] " +
+                    string strSelect = "SELECT * FROM [ProjectX].[dbo].[vw_ProjectX_CraneManagement] " +
                                         "where CustomerID = @CustomerID " +
                                         "AND Date = cast(GETDATE()-1 as Date)" +
                                         "AND Swiper_Description in ({0}) " +
