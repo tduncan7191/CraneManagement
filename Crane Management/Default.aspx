@@ -25,19 +25,7 @@
             <input type="text" id="txtUserPassword" class="form-control input-sm chat-input" placeholder="password" runat="server" />
             <br />
         </div>
-        <div id="divCraneSelection" style="text-align:center">
-            <select id="craneSelection" class="selectpicker" multiple="true" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true" runat="server" required="required">
-                <option value="The Giant">The Giant</option>
-                <option value="Ice Crane 1">Ice Crane 1</option>
-                <option value="Key Master">Key Master</option>
-                <option value="Big Choice Crane 1">Big Choice Crane 1</option>
-
-                <option value="Big Choice Crane 2">Big Choice Crane 2</option>
-                <option value="Big Choice Crane 3">Big Choice Crane 3</option>
-                <option value="Big Choice Crane 4">Big Choice Crane 4</option>
-                <option value="UFO Catcher #1">UFO Catcher #1</option>
-                <option value="UFO Catcher #2">UFO Catcher #2</option>
-            </select>
+        <div style="text-align:center">
             <asp:button class="btn btn-default" Text="Login" runat="server" OnClick="BtnLogin_Click" />
         </div>
     </form>
@@ -46,6 +34,5 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>   
     <script src="vendors/bootstrap-select/js/bootstrap-select.js"></script>
-
 </body>
 </html>

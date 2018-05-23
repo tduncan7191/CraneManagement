@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -10,16 +12,33 @@ public partial class _Default : System.Web.UI.Page
 
     protected void BtnLogin_Click(object sender, EventArgs e)
     {
-        List<string> cranes = new List<string>();
-        IEnumerable<string> selectedCranes = Request.Form["craneSelection"].Split(',');
-        string url = "Management.aspx?";
-        foreach (var crane in selectedCranes)
+        List<string> customerIDs = new List<string>();
+
+        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ToString()))
         {
-            cranes.Add(crane);
-            url += crane + "&";
+            conn.Open();
+
+            using (SqlCommand cmd = new SqlCommand("SELECT * FROM [ProjectX].[dbo].[CustomerContact] WHERE username = @username and password = @password", conn))
+            {
+                cmd.Parameters.AddWithValue("@username", txtUserName.Value);
+                cmd.Parameters.AddWithValue("@password", txtUserPassword.Value);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            customerIDs.Add(reader["customerID"].ToString());
+                        }
+                        Session["customerIDs"] = customerIDs;
+                        Response.Redirect("Management.aspx");
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Incorrect Uername or password');</script>");
+                    }
+                }
+            }
         }
-        url = url.TrimEnd('&');
-        Session["cranesSelected"] = cranes;
-        Response.Redirect(url);
     }
 }

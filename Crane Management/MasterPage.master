@@ -41,8 +41,13 @@
             <div class="main_container">
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
+                        <div class="navbar nav_image">                            
+                            <img src="~/images/hiint_beta_logo.png" style="height:150px; width:200px" runat="server" />
+                        </div>
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="Management.aspx" class="site_title"><span>Crane Management</span></a>
+                            <a href="Management.aspx" class="site_title">
+                                <span>Crane Management</span>
+                            </a>
                         </div>
 
                         <div class="clearfix"></div>
@@ -71,31 +76,18 @@
                 <div class="top_nav">
                     <div class="nav_menu">
                         <nav>
-                            <div class="nav toggle">
-                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                            </div>
-                            <select id="masterCraneSelection" class="selectpicker" multiple="true" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true" runat="server" required="required">
-                                <option value="The Giant">The Giant</option>
-                                <option value="Ice Crane 1">Ice Crane 1</option>
-                                <option value="Key Master">Key Master</option>
-                                <option value="Big Choice Crane 1">Big Choice Crane 1</option>
-                                <option value="Big Choice Crane 2">Big Choice Crane 2</option>
-                                <option value="Big Choice Crane 3">Big Choice Crane 3</option>
-                                <option value="Big Choice Crane 4">Big Choice Crane 4</option>
-                                <option value="UFO Catcher #1">UFO Catcher #1</option>
-                                <option value="UFO Catcher #2">UFO Catcher #2</option>
-                            </select>
-                            <asp:button class="btn btn-default" Text="Change Crane Selection" runat="server" OnClick="BtnUpdateCraneSelection_Click" />
-                            
-                            <div id="reportrange" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                            <div id="reportrange"style="background: #fff; cursor: pointer; padding: 8px 10px; border: 1px solid #ccc">
                                 <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                 <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
                             </div>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="">
-                                    <a href="Default.aspx">Log Out<i class="fa fa-sign-out pull-right"></i></a>
-                                </li>
-                            </ul>
+                            <select id="masterCraneSelection" class="selectpicker" multiple="true" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true" runat="server" required="required"></select>
+                            <asp:button class="btn btn-default" Text="Change Crane Selection" runat="server" OnClick="BtnUpdateCraneSelection_Click" />
+                            <select id="customerIDSelection" class="selectpicker" multiple="true" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true" runat="server" required="required"></select>
+                            <asp:button class="btn btn-default" Text="Change CustomerID Selection" runat="server" OnClick="BtnUpdateCustomerIDSelection_Click" />
+                            
+                            <div class="pull-right" style="background: #fff; cursor: pointer; padding: 8px 10px; border: 1px solid #ccc">
+                                <a href="Default.aspx">Log Out<i class="fa fa-sign-out pull-right"></i></a>
+                            </div>
                         </nav>
                     </div>
                 </div>
