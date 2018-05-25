@@ -237,17 +237,17 @@ public partial class _Default : Page
                             TableCell cell4 = new TableCell();
                             cell4.Controls.Add(select);
 
-                            TextBox txtPrizeCost = new TextBox { ID = "PrizeType" + i, CssClass = "form-control", Text = reader["PrizeType"].ToString() };
-                            txtPrizeCost.Style.Add("width", "200px");
+                            //TextBox txtPrizeCost = new TextBox { ID = "PrizeType" + i, CssClass = "form-control", Text = reader["PrizeType"].ToString() };
+                            //txtPrizeCost.Style.Add("width", "200px");
 
-                            TableCell cell5 = new TableCell();
-                            cell5.Controls.Add(txtPrizeCost);
+                            //TableCell cell5 = new TableCell();
+                            //cell5.Controls.Add(txtPrizeCost);
 
                             row.Cells.Add(cell1);
                             row.Cells.Add(cell2);
                             row.Cells.Add(cell3);
                             row.Cells.Add(cell4);
-                            row.Cells.Add(cell5);
+                            //row.Cells.Add(cell5);
                             tbl.Rows.Add(row);
                             i++;
                         }

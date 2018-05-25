@@ -41,9 +41,9 @@
                                 <asp:TableCell>
                                 <label class='form-control-plaintext'>Prize Description</label>
                                 </asp:TableCell>
-                                <asp:TableCell>
+                               <%-- <asp:TableCell>
                                 <label class='form-control-plaintext'>Prize Type</label>      
-                                </asp:TableCell>
+                                </asp:TableCell>--%>
                             </asp:TableRow>
                         </asp:Table>
                         <br />

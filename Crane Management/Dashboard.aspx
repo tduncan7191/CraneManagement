@@ -7,9 +7,9 @@
     <div class="right_col" role="main">
         <!-- top tiles -->
         <div class="row tile_count">
-            <div class="col-md-2 col-sm-2 col-xs-2 tile_stats_count">
+            <div class="col-md-3 col-sm-2 col-xs-2 tile_stats_count">
                 <span class="count_top"><i class="fa fa-crane"></i>Crane</span>
-                <div id="craneName" class="count"></div>
+                <div id="craneName" style="font-size:2vw"></div>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-2 tile_stats_count">
                 <span class="count_top"><i class="fa fa-credit-card"></i>Revenue</span>
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="row tile_count">            
-            <div class="col-md-2 col-sm-2 col-xs-2 tile_stats_count">
+            <div class="col-md-3 col-sm-2 col-xs-2 tile_stats_count">
                 <span class="count_top"><i class="fa fa-money"></i>Cost Of Goods</span>
                 <div id="costOfGoods" class="count red"></div>
                 <img src="/images/loading.gif" id="costOfGoods_load" style="margin: auto; display: block;" />

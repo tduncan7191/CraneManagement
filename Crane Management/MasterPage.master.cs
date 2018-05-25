@@ -87,7 +87,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                         while (reader.Read())
                         {
                             cranes.Add(reader["swiperDescription"].ToString());
-                            masterCraneSelection.Items.Add(reader["swiperDescription"].ToString());
+                            //masterCraneSelection.Items.Add(reader["swiperDescription"].ToString());
                         }
                     }
                 }

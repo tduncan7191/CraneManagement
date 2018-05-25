@@ -530,7 +530,7 @@ function renderTopTilesData(startDate, endDate, cranes) {
                 $('#payoutPercent').html(data[i].PayoutPercent + '%'); 
                 $('#hitRate').html('1 in ' + data[i].HitRate);
                 $('#wins').html(data[i].Wins);
-                console.log(cranes.length);
+                
                 if (cranes.length == 1) {
                     $('#craneName').html(cranes[i]);
                 }
@@ -4959,9 +4959,12 @@ function init_echarts() {
 	   
 $(document).ready(function() {
 
-        var url = window.location.search;
+    var urlSearch = window.location.search;
+    var urlHash = window.location.hash;
+    var url = urlSearch + urlHash;
+    console.log(url);
         if (url.includes('&')) {
-            var cranesSelected = url.replace("?", '').split("&");
+            var cranesSelected = url.replace("?", '').split("&");            
             for (var i = 0; i < cranesSelected.length; i++) {
                 cranes.push(cranesSelected[i].split("%20").join(' '));
             }
