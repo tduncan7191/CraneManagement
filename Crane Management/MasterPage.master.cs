@@ -46,6 +46,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
             anchor.InnerHtml += "<i class='fa fa-desktop'></i>" + crane;
             li.Controls.Add(anchor);
             ulCranes.Controls.Add(li);
+        }
+        foreach (string crane in Cranes)
+        {
             url += crane + "&";
         }
         url = url.TrimEnd('&');

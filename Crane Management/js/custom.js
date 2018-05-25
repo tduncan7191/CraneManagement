@@ -530,6 +530,7 @@ function renderTopTilesData(startDate, endDate, cranes) {
                 $('#payoutPercent').html(data[i].PayoutPercent + '%'); 
                 $('#hitRate').html('1 in ' + data[i].HitRate);
                 $('#wins').html(data[i].Wins);
+                console.log(cranes.length);
                 if (cranes.length == 1) {
                     $('#craneName').html(cranes[i]);
                 }
@@ -541,7 +542,7 @@ function renderTopTilesData(startDate, endDate, cranes) {
         error: function (err) {
             console.log(err);
         }
-    });    
+    });   
 }
 
 function init_flot_chart(){
