@@ -22,7 +22,7 @@
             <h4>Welcome back.</h4>
             <input type="text" id="txtUserName" class="form-control input-sm chat-input" placeholder="email" runat="server" />
             <br />
-            <input type="text" id="txtUserPassword" class="form-control input-sm chat-input" placeholder="password" runat="server" />
+            <input type="password" id="txtUserPassword" class="form-control input-sm chat-input" placeholder="password" runat="server"  />
             <br />
         </div>
         <div style="text-align:center">
