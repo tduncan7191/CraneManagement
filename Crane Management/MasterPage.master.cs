@@ -28,42 +28,42 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             Response.Redirect("Default.aspx");
         }
+
         if (Cranes == null)
         {
             Cranes = GetDBCranes(CustomerIDs);
         }
-        else
+        if (Cranes.Count > 0)
         {
-            GetDBCranes(CustomerIDs);
+            string url = "Dashboard.aspx?";
+            foreach (string crane in Cranes)
+            {
+                var li = new HtmlGenericControl("li");
+                var anchor = new HtmlAnchor();
+                anchor.HRef = url + crane;
+                anchor.InnerHtml += "<i class='fa fa-desktop'></i>" + crane;
+                li.Controls.Add(anchor);
+                ulCranes.Controls.Add(li);
+            }
+            foreach (string crane in Cranes)
+            {
+                url += crane + "&";
+            }
+            url = url.TrimEnd('&');
+            var li2 = new HtmlGenericControl("li");
+            var anchor2 = new HtmlAnchor();
+            anchor2.InnerHtml += "<i class='fa fa-desktop'></i>All Selected Cranes";
+            anchor2.HRef = url;
+            li2.Controls.Add(anchor2);
+            ulGeneral.Controls.Add(li2);
+            hCranes.InnerText = "Selected Cranes";
         }
-        
-        string url = "Dashboard.aspx?";
-        foreach (string crane in Cranes)
-        {
-            var li = new HtmlGenericControl("li");
-            var anchor = new HtmlAnchor();
-            anchor.HRef = url + crane;
-            anchor.InnerHtml += "<i class='fa fa-desktop'></i>" + crane;
-            li.Controls.Add(anchor);
-            ulCranes.Controls.Add(li);
-        }
-        foreach (string crane in Cranes)
-        {
-            url += crane + "&";
-        }
-        url = url.TrimEnd('&');
-        var li2 = new HtmlGenericControl("li");
-        var anchor2 = new HtmlAnchor();
-        anchor2.InnerHtml += "<i class='fa fa-desktop'></i>All Selected Cranes";
-        anchor2.HRef = url;
-        li2.Controls.Add(anchor2);
-        ulGeneral.Controls.Add(li2);
     }
 
     private List<string> GetDBCranes(List<string> customerIDs)
     {
         List<string> cranes = new List<string>();
-        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ToString()))
+        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["LiveConnectionString"].ToString()))
         {
             conn.Open();
 
@@ -89,7 +89,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                             cranes.Add(reader["swiperDescription"].ToString());
                             //masterCraneSelection.Items.Add(reader["swiperDescription"].ToString());
                         }
-                    }
+                    }                    
                 }
             }
         }

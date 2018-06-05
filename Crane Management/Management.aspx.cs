@@ -42,7 +42,7 @@ public partial class _Default : Page
     private List<string> GetDBCranes(List<string> customerIDs)
     {
         List<string> cranes = new List<string>();
-        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ToString()))
+        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["LiveConnectionString"].ToString()))
         {
             conn.Open();
 
@@ -78,7 +78,7 @@ public partial class _Default : Page
     {
         foreach (string customerID in CustomerIDs)
         {
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ToString()))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["LiveConnectionString"].ToString()))
             {
                 conn.Open();
                 foreach (TableRow row in tbl.Rows)
@@ -122,7 +122,7 @@ public partial class _Default : Page
         {
             foreach (string customerID in CustomerIDs)
             {
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ToString()))
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["LiveConnectionString"].ToString()))
                 {
                     conn.Open();
                     string strInsert = "Insert into [ProjectX].[dbo].[CraneManagement_PrizeDescriptions] (PrizeDescriptions, customerID) values (@PrizeDescriptions, @CustomerID)";
@@ -162,7 +162,7 @@ public partial class _Default : Page
                 CustomerID.Text = customerID;
 
                 date.Text = DateTime.Now.ToString();
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ToString()))
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["LiveConnectionString"].ToString()))
                 {
                     conn.Open();
 
@@ -180,25 +180,40 @@ public partial class _Default : Page
                             }
                         }
                     }
+                }
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Masserv02ConnectionString"].ToString()))
+                {
+                    conn.Open();
 
                     using (SqlCommand cmd = new SqlCommand())
                     {
-                        string strSelect = "SELECT * FROM [ProjectX].[dbo].[vw_ProjectX_CraneManagement] " +
-                                            "where CustomerID = @CustomerID " +
-                                            "AND Date = cast(GETDATE()-1 as Date)" +
-                                            "AND Swiper_Description in ({0}) " +
-                                            "order by Date desc, swiper_Description";
+                        string strCmd = string.Empty;
 
                         cmd.Parameters.AddWithValue("@CustomerID", customerID);
                         var ParameterList = new List<string>();
                         var index = 0;
-                        foreach (var swiperDescription in Cranes)
+                        if (Cranes.Count <= 0)
                         {
-                            cmd.Parameters.AddWithValue("@Param" + index, swiperDescription);
-                            ParameterList.Add("@Param" + index);
-                            index++;
+                            strCmd = "SELECT * FROM [ProjectX].[dbo].[vw_ProjectX_CraneManagement] " +
+                                            "where CustomerID = @CustomerID " +
+                                            "AND Date = cast(GETDATE()-1 as Date) " +
+                                            "order by Date desc, swiper_Description";
                         }
-                        string strCmd = String.Format(strSelect, string.Join(",", ParameterList));
+                        else
+                        {
+                            string strSelect = "SELECT * FROM [ProjectX].[dbo].[vw_ProjectX_CraneManagement] " +
+                                            "where CustomerID = @CustomerID " +
+                                            "AND Date = cast(GETDATE()-1 as Date) " +
+                                            "AND Swiper_Description in ({0}) " +
+                                            "order by Date desc, swiper_Description";
+                            foreach (var swiperDescription in Cranes)
+                            {
+                                cmd.Parameters.AddWithValue("@Param" + index, swiperDescription);
+                                ParameterList.Add("@Param" + index);
+                                index++;
+                            }
+                            strCmd = String.Format(strSelect, string.Join(",", ParameterList));
+                        }
                         cmd.CommandText = strCmd;
                         cmd.Connection = conn;
                         var reader = cmd.ExecuteReader();

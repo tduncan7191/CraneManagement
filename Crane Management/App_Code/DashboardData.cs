@@ -22,7 +22,7 @@ public class DashboardData : WebService
     {        
         List<DateRangePlotChartData> returnObjects = new List<DateRangePlotChartData>();
 
-        using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString))
+        using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Masserv02ConnectionString"].ConnectionString))
         {
             con.Open();
             string query = "select distinct " +
@@ -61,7 +61,7 @@ public class DashboardData : WebService
     {
         List<DateRangePlotChartData> returnObjects = new List<DateRangePlotChartData>();
 
-        using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString))
+        using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Masserv02ConnectionString"].ConnectionString))
         {
             con.Open();
             string query = "select distinct date as date" +
@@ -115,7 +115,7 @@ public class DashboardData : WebService
     {
         List<TopTilesChartData> returnObjects = new List<TopTilesChartData>();
 
-        using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString))
+        using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Masserv02ConnectionString"].ConnectionString))
         {
             con.Open();
             string query = "select " +

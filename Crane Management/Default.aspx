@@ -11,9 +11,7 @@
 
     <!-- Custom Theme Style -->
     <link href="css/custom.css" rel="stylesheet"/>
-
-
-
+    
 </head>
 <body>
     <form runat="server">    
@@ -24,9 +22,12 @@
             <br />
             <input type="password" id="txtUserPassword" class="form-control input-sm chat-input" placeholder="password" runat="server"  />
             <br />
+            <%--<input type="text" id="txtCustomerID" class="form-control input-sm chat-input" placeholder="Customer ID" runat="server"  />--%>
+            <br />
         </div>
         <div style="text-align:center">
             <asp:button class="btn btn-default" Text="Login" runat="server" OnClick="BtnLogin_Click" />
+            <%--<asp:button class="btn btn-default" Text="Add User" runat="server" OnClick="BtnAddUser_Click" />--%>
         </div>
     </form>
     
