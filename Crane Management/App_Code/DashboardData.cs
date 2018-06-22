@@ -12,103 +12,9 @@ public class DashboardData : WebService
 {    
     public DashboardData()
     {
-        //Uncomment the following line if using designed components 
-        //InitializeComponent(); 
+    
     }
     
-    [WebMethod]
-    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public List<DateRangePlotChartData> GetDateRangePlotChartData(string startDate, string endDate, string crane)
-    {        
-        List<DateRangePlotChartData> returnObjects = new List<DateRangePlotChartData>();
-
-        using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Masserv02ConnectionString"].ConnectionString))
-        {
-            con.Open();
-            string query = "select distinct " +
-                "cast(Date as Date) as start_Date" +
-                ",sum(cast(Transaction_Amount as money)) as Revenue " +
-                ",sum(cast(CostOfGoodsSold as money)) as costOfGoods " +
-                "from [DataWarehouse].[dbo].[vw_ProjectX_CraneDashboard] " +
-                "where (cast(Date as Date) between cast(@startDate as Date) and cast(@endDate as Date)) " +
-                "AND SwiperDescription = @crane " +
-                "group by Date";
-            using (SqlCommand cmd = new SqlCommand(query, con))
-            {
-                cmd.Parameters.AddWithValue("@startDate", startDate);
-                cmd.Parameters.AddWithValue("@endDate", endDate);
-                cmd.Parameters.AddWithValue("@crane", crane);
-
-                var reader = cmd.ExecuteReader();
-                
-                while (reader.Read())
-                {
-                    returnObjects.Add(new DateRangePlotChartData
-                    {
-                        Date = reader["start_Date"].ToString(),
-                        CostOfGoods = reader["Revenue"].ToString(),
-                        TotalRevenue = reader["costOfGoods"].ToString()
-                    });
-                }
-            }
-        }
-        return returnObjects;
-    }
-
-    [WebMethod]
-    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public List<DateRangePlotChartData> GetPayoutChartData(string dateType, string crane)
-    {
-        List<DateRangePlotChartData> returnObjects = new List<DateRangePlotChartData>();
-
-        using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Masserv02ConnectionString"].ConnectionString))
-        {
-            con.Open();
-            string query = "select distinct date as date" +
-                               ",SUM([AverageCost]/nullif([Transaction_Amount],0)) OVER(Partition by Date) as TotalMargin " +
-                               "FROM[DataWarehouse].[dbo].[vw_ProjectX_CraneDashboard] " +
-                               "where Date >= GETDATE()-365 " +
-                               "and Transaction_Type = 'PLAY' " +
-                               "and SwiperDescription = @crane"; 
-
-            if (dateType == "month")
-            {
-                query = "select distinct " +
-                               "concat(YEAR(GETDATE()), '-', month(date), '-', DAY(GETDATE())) as date " +
-                               ",SUM([AverageCost]/nullif([Transaction_Amount],0)) OVER(Partition by Month(Date)) as TotalMargin " +
-                               "FROM[DataWarehouse].[dbo].[vw_ProjectX_CraneDashboard] " +
-                               "where Date >= GETDATE()-365 " +
-                               "and Transaction_Type = 'PLAY' " +
-                               "and SwiperDescription = @crane";
-            }
-            //if (dateType == "year")
-            //{
-            //    query = "select distinct" +
-            //                   "concat(YEAR(date), '-', month(GETDATE()), '-', DAY(GETDATE())) as date " +
-            //                   ",SUM([AverageCost]/nullif([Transaction_Amount],0)) OVER(Partition by year(Date)) as TotalMargin " +
-            //                   "FROM[DataWarehouse].[dbo].[vw_ProjectX_CraneDashboard] " +
-            //                   "where start_date >= GETDATE()-365 " +
-            //                   "and Transaction_Type = 'PLAY' " +
-            //                   "and SwiperDescription = @crane";
-            //}
-            using (SqlCommand cmd = new SqlCommand(query, con))
-            {
-                cmd.Parameters.AddWithValue("@crane", crane);
-
-                var reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    returnObjects.Add(new DateRangePlotChartData
-                    {
-                        Date = reader["date"].ToString(),
-                        PayoutPercent = reader["TotalMargin"].ToString()
-                    });
-                }
-            }
-        }
-        return returnObjects;
-    }
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public List<TopTilesChartData> GetTopTilesData(string startDate, string endDate, string[] cranes)
@@ -186,13 +92,7 @@ public class DashboardData : WebService
         }
         return returnObjects;
     }
-    public class DateRangePlotChartData
-    {
-        public string Date { get; set; }
-        public string CostOfGoods { get; set; }
-        public string TotalRevenue { get; set; }
-        public string PayoutPercent { get; set; }
-    }
+
     public class TopTilesChartData
     {
         public string Revenue { get; set; }

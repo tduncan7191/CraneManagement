@@ -20,7 +20,7 @@ public partial class _Default : Page
         get { return ViewState["Cranes"] as List<string>; }
         set { ViewState["Cranes"] = value; }
     }
-    
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -85,6 +85,9 @@ public partial class _Default : Page
                 {
                     using (SqlCommand cmd = new SqlCommand("in_CraneManagement", conn))
                     {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        bool flag = false;
                         foreach (TableCell cell in row.Cells)
                         {
                             foreach (Control ctrl in cell.Controls)
@@ -92,7 +95,7 @@ public partial class _Default : Page
                                 if (ctrl is Label)
                                 {
                                     Label lbl = (Label)ctrl;
-                                    cmd.Parameters.AddWithValue("@" + lbl.ID.Substring(0, (lbl.ID.Length - 1)), lbl.Text.Trim());
+                                    cmd.Parameters.AddWithValue("@" + ctrl.ID.Substring(0, (lbl.ID.Length - 1)), lbl.Text.Trim());
                                 }
                                 if (ctrl is TextBox)
                                 {
@@ -104,12 +107,16 @@ public partial class _Default : Page
                                     HtmlSelect select = (HtmlSelect)ctrl;
                                     cmd.Parameters.AddWithValue("@PrizeDescription", select.Value);
                                 }
+                                flag = true;
                             }
                         }
-                        cmd.Parameters.AddWithValue("@CustomerID", customerID);
-                        cmd.Parameters.AddWithValue("@Date", DateTime.Now.AddDays(-1).ToString("d"));
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.ExecuteNonQuery();
+                        if (flag)
+                        {
+                            cmd.Parameters.AddWithValue("@PrizeType", string.Empty);
+                            cmd.Parameters.AddWithValue("@CustomerID", customerID);
+                            cmd.Parameters.AddWithValue("@Date", DateTime.Now.AddDays(-1).ToString("d"));
+                            cmd.ExecuteNonQuery();
+                        }
                     }
                 }
             }
