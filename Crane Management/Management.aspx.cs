@@ -187,10 +187,6 @@ public partial class _Default : Page
                             }
                         }
                     }
-                }
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Masserv02ConnectionString"].ToString()))
-                {
-                    conn.Open();
 
                     using (SqlCommand cmd = new SqlCommand())
                     {

@@ -21,7 +21,7 @@ public class DashboardData : WebService
     {
         List<TopTilesChartData> returnObjects = new List<TopTilesChartData>();
 
-        using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Masserv02ConnectionString"].ConnectionString))
+        using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["LiveConnectionString"].ConnectionString))
         {
             con.Open();
             string query = "select " +
