@@ -27,7 +27,7 @@ public class DashboardData : WebService
             string query = "select " +
                             "sum(Prize_Count) as wins " +
                             ",sum(cast(CostOfGoodsSold as money)) as costOfGoods " +
-                            ",1/(sum(cast(Prize_Count as money)) /a.plays) as HitRate " +
+                            ",1/case when (sum(cast(Prize_Count as money)) /a.plays) = 0 then 1 else (sum(cast(Prize_Count as money)) /a.plays) end as HitRate " +
                             ",cast((sum(cast(CostOfGoodsSold as money)) /a.Revenue)*100 as int) as PayoutPercent" +
                             ",a.plays " +
                             ",a.Revenue " +
@@ -65,27 +65,45 @@ public class DashboardData : WebService
                 cmd.Connection = con;
 
                 var reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+                if (reader.HasRows)
                 {
-                    float revenue;
-                    float costOfGoods;
-                    float revenuePerPlay;
-                    float hitRate;
-                    float.TryParse(reader["Revenue"].ToString(), out revenue);
-                    float.TryParse(reader["CostOfGoods"].ToString(), out costOfGoods);
-                    float.TryParse(reader["RevenuePerPlay"].ToString(), out revenuePerPlay);
-                    float.TryParse(reader["HitRate"].ToString(), out hitRate);
-
+                    while (reader.Read())
+                    {
+                        float revenue;
+                        float costOfGoods;
+                        float revenuePerPlay;
+                        float hitRate;
+                        float.TryParse(reader["Revenue"].ToString(), out revenue);
+                        float.TryParse(reader["CostOfGoods"].ToString(), out costOfGoods);
+                        float.TryParse(reader["RevenuePerPlay"].ToString(), out revenuePerPlay);
+                        float.TryParse(reader["HitRate"].ToString(), out hitRate);
+                        if (hitRate == 1)
+                        {
+                            hitRate = 0;
+                        }
+                        returnObjects.Add(new TopTilesChartData
+                        {
+                            Revenue = string.Format("{0:0.00}", revenue),
+                            Plays = reader["Plays"].ToString(),
+                            CostOfGoodsSold = string.Format("{0:0.00}", costOfGoods),
+                            RevenuePerPlay = string.Format("{0:0.00}", revenuePerPlay),
+                            PayoutPercent = reader["PayoutPercent"].ToString(),
+                            HitRate = string.Format("{0:0}", Math.Round(hitRate)),
+                            Wins = reader["wins"].ToString()
+                        });
+                    }
+                }
+                else
+                {
                     returnObjects.Add(new TopTilesChartData
                     {
-                        Revenue = string.Format("{0:0.00}", revenue),
-                        Plays = reader["Plays"].ToString(),
-                        CostOfGoodsSold = string.Format("{0:0.00}", costOfGoods),
-                        RevenuePerPlay = string.Format("{0:0.00}", revenuePerPlay),
-                        PayoutPercent = reader["PayoutPercent"].ToString(),
-                        HitRate = string.Format("{0:0}", Math.Round(hitRate)),
-                        Wins = reader["wins"].ToString()
+                        Revenue = string.Format("{0:0.00}", 0),
+                        Plays = "0",
+                        CostOfGoodsSold = string.Format("{0:0.00}", 0),
+                        RevenuePerPlay = string.Format("{0:0.00}", 0),
+                        PayoutPercent = "0",
+                        HitRate = string.Format("{0:0}", 0),
+                        Wins = "0"
                     });
                 }
             }
