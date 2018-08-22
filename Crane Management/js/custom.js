@@ -1546,7 +1546,7 @@ function init_daterangepicker() {
 
 	var optionSet1 = {
 		startDate: moment().subtract(6, 'days'),
-		endDate: moment(),
+        endDate: moment().subtract(1, 'days'),
 		minDate: '01/01/1900',
 		maxDate: '12/31/2099',
 		// dateLimit: {
@@ -1560,7 +1560,7 @@ function init_daterangepicker() {
 		ranges: {
 		//'Today': [moment(), moment()],
 		//'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-		'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment().subtract(1, 'days')],
 		'Last 30 Days': [moment().subtract(29, 'days'), moment()],
 		'This Month': [moment().startOf('month'), moment().endOf('month')],
 		'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
@@ -1583,7 +1583,7 @@ function init_daterangepicker() {
 		}
 	};
 			
-	$('#reportrange span').html(moment().subtract(6, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+    $('#reportrange span').html(moment().subtract(6, 'days').format('MMMM D, YYYY') + ' - ' + moment().subtract(1, 'days').format('MMMM D, YYYY'));
 	$('#reportrange').daterangepicker(optionSet1, cb);
 	$('#reportrange').on('show.daterangepicker', function() {
 		console.log("show event fired");
@@ -1628,7 +1628,7 @@ function init_daterangepicker_right() {
 
 		var optionSet1 = {
 			startDate: moment().subtract(29, 'days'),
-			endDate: moment(),
+			endDate: moment().subtract(1, 'days'),
 			minDate: '01/01/2012',
 			maxDate: '12/31/2020',
 			dateLimit: {
@@ -1642,7 +1642,7 @@ function init_daterangepicker_right() {
 			ranges: {
 			'Today': [moment(), moment()],
 			'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-			'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 7 Days': [moment().subtract(6, 'days')],
 			'Last 30 Days': [moment().subtract(29, 'days'), moment()],
 			'This Month': [moment().startOf('month'), moment().endOf('month')],
 			'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
@@ -1665,7 +1665,7 @@ function init_daterangepicker_right() {
 			}
 		};
 
-		$('#reportrange_right span').html(moment().subtract(6, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+		$('#reportrange_right span').html(moment().subtract(6, 'days').format('MMMM D, YYYY') + ' - ' + moment().subtract(1, 'days').format('MMMM D, YYYY'));
 
 		$('#reportrange_right').daterangepicker(optionSet1, cb);
 
