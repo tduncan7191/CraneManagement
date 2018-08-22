@@ -1545,7 +1545,7 @@ function init_daterangepicker() {
 	};
 
 	var optionSet1 = {
-		startDate: moment().subtract(6, 'days'),
+		startDate: moment().subtract(8, 'days'),
         endDate: moment().subtract(1, 'days'),
 		minDate: '01/01/1900',
 		maxDate: '12/31/2099',
@@ -1560,7 +1560,7 @@ function init_daterangepicker() {
 		ranges: {
 		//'Today': [moment(), moment()],
 		//'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'Last 7 Days': [moment().subtract(6, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(8, 'days'), moment().subtract(1, 'days')],
 		'Last 30 Days': [moment().subtract(29, 'days'), moment()],
 		'This Month': [moment().startOf('month'), moment().endOf('month')],
 		'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
@@ -1583,7 +1583,7 @@ function init_daterangepicker() {
 		}
 	};
 			
-    $('#reportrange span').html(moment().subtract(6, 'days').format('MMMM D, YYYY') + ' - ' + moment().subtract(1, 'days').format('MMMM D, YYYY'));
+    $('#reportrange span').html(moment().subtract(8, 'days').format('MMMM D, YYYY') + ' - ' + moment().subtract(1, 'days').format('MMMM D, YYYY'));
 	$('#reportrange').daterangepicker(optionSet1, cb);
 	$('#reportrange').on('show.daterangepicker', function() {
 		console.log("show event fired");
