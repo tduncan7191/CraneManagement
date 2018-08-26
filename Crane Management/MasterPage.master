@@ -60,6 +60,7 @@
                                 <h3>General</h3>
                                 <ul id="ulGeneral" class="nav side-menu" runat="server">
                                     <li><a href="Management.aspx"><i class="fa fa-edit"></i>Management</a></li>
+                                    <li><a href="ProductManagement.aspx"><i class="fa fa-edit"></i>Product Management</a></li>
                                 </ul>
                             </div>
                             <div class="menu_section">

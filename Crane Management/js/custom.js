@@ -348,6 +348,7 @@ $(document).ajaxSend(function (event, request, settings) {
     $('#payoutPercent').hide();
     $('#hitRate').hide();
     $('#wins').hide();
+    $('#prize').hide();
 
     $('#chart_plot_load').show();
     $('#chart_plot_02_load').show();
@@ -358,6 +359,7 @@ $(document).ajaxSend(function (event, request, settings) {
     $('#payoutPercent_load').show();
     $('#hitRate_load').show();
     $('#wins_load').show();
+    $('#prize_load').show();
 });
 
 $(document).ajaxComplete(function (event, request, settings) {
@@ -370,6 +372,7 @@ $(document).ajaxComplete(function (event, request, settings) {
     $('#payoutPercent').show();
     $('#hitRate').show();
     $('#wins').show();
+    $('#prize').show();
 
     $('#chart_plot_load').hide();
     $('#chart_plot_02_load').hide();
@@ -380,6 +383,7 @@ $(document).ajaxComplete(function (event, request, settings) {
     $('#payoutPercent_load').hide();
     $('#hitRate_load').hide();
     $('#wins_load').hide();
+    $('#prize_load').hide();
 });
 
 function renderDateRangePlotChartData(startDate, endDate, cranes) {        
@@ -530,6 +534,7 @@ function renderTopTilesData(startDate, endDate, cranes) {
                 $('#payoutPercent').html(data[i].PayoutPercent + '%'); 
                 $('#hitRate').html('1 in ' + data[i].HitRate);
                 $('#wins').html(data[i].Wins);
+                $('#prize').html(data[i].Prize);
                 
                 if (cranes.length == 1) {
                     $('#craneName').html(cranes[i]);

@@ -12,6 +12,11 @@
                 <span class="count_top"><i class="fa fa-crane"></i>Crane</span>
                 <div id="craneName" style="font-size:2vw"></div>
             </div>
+            <div class="col-md-3 col-sm-2 col-xs-2 tile_stats_count">
+                <span class="count_top"><i class="fa fa-trophy"></i>Prize</span>
+                <div id="prize" style="font-size:2vw"></div>
+                <img src="/images/loading.gif" id="prize_load" style="margin: auto; display: block;" />
+            </div>
             <div class="col-md-2 col-sm-2 col-xs-2 tile_stats_count">
                 <span class="count_top"><i class="fa fa-credit-card"></i>Revenue</span>
                 <div id="revenue" class="count green"></div>
@@ -29,7 +34,7 @@
             </div>
         </div>
         <div class="row tile_count">            
-            <div class="col-md-3 col-sm-2 col-xs-2 tile_stats_count">
+            <div class="col-md-2 col-sm-2 col-xs-2 tile_stats_count">
                 <span class="count_top"><i class="fa fa-money"></i>Cost Of Goods</span>
                 <div id="costOfGoods" class="count red"></div>
                 <img src="/images/loading.gif" id="costOfGoods_load" style="margin: auto; display: block;" />

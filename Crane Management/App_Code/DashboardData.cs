@@ -31,12 +31,13 @@ public class DashboardData : WebService
                             ",cast((sum(cast(CostOfGoodsSold as money)) /a.Revenue)*100 as int) as PayoutPercent" +
                             ",a.plays " +
                             ",a.Revenue " +
-                            ",a.RevenuePerPlay " +
+                            ",a.RevenuePerPlay" +
+                            ",PrizeDescription " +
                             "FROM [ProjectX].[dbo].[vw_ProjectX_CraneDashboard] " +
                             "cross join( " +
-                            "    select count(Transaction_Id) as plays " +
-                            "    , sum(cast(Transaction_Amount as money)) as Revenue " +
-	                        "    ,sum(cast(Transaction_Amount as money)) / count(Transaction_Id) as RevenuePerPlay " +
+                            "   select count(Transaction_Id) as plays " +
+                            "   ,sum(cast(Transaction_Amount as money)) as Revenue " +
+	                        "   ,sum(cast(Transaction_Amount as money)) / count(Transaction_Id) as RevenuePerPlay" +
                             "    FROM [ProjectX].[dbo].[vw_ProjectX_CraneDashboard] " +
                             "    where Transaction_Type = 'play' " +
                             "    and [Date] between @startDate and @endDate " +
@@ -44,7 +45,7 @@ public class DashboardData : WebService
                             ") a " +
                             "where SwiperDescription in ({0}) " +
                             "and [Date] between @startDate and @endDate " +
-                            "group by a.plays, a.Revenue, a.RevenuePerPlay";
+                            "group by a.plays, a.Revenue, a.RevenuePerPlay, PrizeDescription";
             
             using (SqlCommand cmd = new SqlCommand())
             {
@@ -89,7 +90,8 @@ public class DashboardData : WebService
                             RevenuePerPlay = string.Format("{0:0.00}", revenuePerPlay),
                             PayoutPercent = reader["PayoutPercent"].ToString(),
                             HitRate = string.Format("{0:0}", Math.Round(hitRate)),
-                            Wins = reader["wins"].ToString()
+                            Wins = reader["wins"].ToString(),
+                            Prize = reader["PrizeDescription"].ToString()
                         });
                     }
                 }
@@ -103,7 +105,8 @@ public class DashboardData : WebService
                         RevenuePerPlay = string.Format("{0:0.00}", 0),
                         PayoutPercent = "0",
                         HitRate = string.Format("{0:0}", 0),
-                        Wins = "0"
+                        Wins = "0",
+                        Prize = "None Selected"
                     });
                 }
             }
@@ -120,5 +123,6 @@ public class DashboardData : WebService
         public string PayoutPercent { get; set; }
         public string HitRate { get; set; }
         public string Wins { get; set; }
+        public string Prize { get; set; }
     }
 }
