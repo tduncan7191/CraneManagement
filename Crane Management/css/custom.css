@@ -1726,18 +1726,18 @@ span.right {
     }
 }
 .tile_count .tile_stats_count .count {
-    font-size: 30px;
+    font-size: 20px;
     line-height: 47px;
-    font-weight: 600
+    font-weight: 400
 }
 @media (min-width: 768px) {
     .tile_count .tile_stats_count .count {
-        font-size: 40px
+        font-size: 20px
     }
 }
 @media (min-width: 992px) and (max-width: 1100px) {
     .tile_count .tile_stats_count .count {
-        font-size: 30px
+        font-size: 20px
     }
 }
 .tile_count .tile_stats_count span {
@@ -1905,7 +1905,7 @@ h4.graph_title {
     padding: 0
 }
 .tile-stats .count {
-    font-size: 38px;
+    font-size: 20px;
     font-weight: bold;
     line-height: 1.65857
 }

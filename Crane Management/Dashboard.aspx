@@ -8,50 +8,48 @@
     <div class="right_col" role="main">
         <!-- top tiles -->
         <div class="row tile_count">
-            <div class="col-md-3 col-sm-2 col-xs-2 tile_stats_count">
-                <span class="count_top"><i class="fa fa-crane"></i>Crane</span>
-                <div id="craneName" style="font-size:2vw"></div>
+            <div class="col-md-2 tile_stats_count">
+                <span class="count_top"><img src="images/favicon.ico">Crane</span>
+                <div id="craneName" class="count" style="font-size:25px;"></div>
             </div>
-            <div class="col-md-3 col-sm-2 col-xs-2 tile_stats_count">
+            <div class="col-md-2 tile_stats_count">
                 <span class="count_top"><i class="fa fa-trophy"></i>Prize</span>
-                <div id="prize" style="font-size:2vw"></div>
+                <div id="prize" class="count" style="font-size:25px;"></div>
                 <img src="/images/loading.gif" id="prize_load" style="margin: auto; display: block;" />
             </div>
-            <div class="col-md-2 col-sm-2 col-xs-2 tile_stats_count">
+            <div class="col-md-1 tile_stats_count">
                 <span class="count_top"><i class="fa fa-credit-card"></i>Revenue</span>
-                <div id="revenue" class="count green"></div>
+                <div id="revenue" class="count green" style="font-size:25px;"></div>
                 <img src="/images/loading.gif" id="revenue_load" style="margin: auto; display: block;" />
             </div>
-            <div class="col-md-2 col-sm-2 col-xs-2 tile_stats_count">
+            <div class="col-md-1 tile_stats_count">
                 <span class="count_top"><i class="fa fa-play"></i>Plays</span>
-                <div id="plays" class="count"></div>
+                <div id="plays" class="count" style="font-size:25px;"></div>
                 <img src="/images/loading.gif" id="plays_load" style="margin: auto; display: block;" />
             </div>
-            <div class="col-md-2 col-sm-2 col-xs-2 tile_stats_count">
+            <div class="col-md-1 tile_stats_count">
                 <span class="count_top"><i class="fa fa-credit-card"></i>Wins</span>
-                <div id="wins" class="count green"></div>
+                <div id="wins" class="count green" style="font-size:25px;"></div>
                 <img src="/images/loading.gif" id="wins_load" style="margin: auto; display: block;" />
-            </div>
-        </div>
-        <div class="row tile_count">            
-            <div class="col-md-2 col-sm-2 col-xs-2 tile_stats_count">
+            </div>        
+            <div class="col-md-1 tile_stats_count">
                 <span class="count_top"><i class="fa fa-money"></i>Cost Of Goods</span>
-                <div id="costOfGoods" class="count red"></div>
+                <div id="costOfGoods" class="count red" style="font-size:25px;"></div>
                 <img src="/images/loading.gif" id="costOfGoods_load" style="margin: auto; display: block;" />
             </div>
-            <div class="col-md-2 col-sm-2 col-xs-2 tile_stats_count">
+            <div class="col-md-1 tile_stats_count">
                 <span class="count_top"><i class="fa fa-credit-card-alt"></i>Revenue Per Play</span>
-                <div id="revenuePerPlay" class="count"></div>
+                <div id="revenuePerPlay" class="count" style="font-size:25px;"></div>
                 <img src="/images/loading.gif" id="revenuePerPlay_load" style="margin: auto; display: block;" />
             </div>
-            <div class="col-md-2 col-sm-2 col-xs-2 tile_stats_count">
+            <div class="col-md-1 tile_stats_count">
                 <span class="count_top"><i class="fa fa-percent"></i>Payout</span>
-                <div id="payoutPercent" class="count"></div>
+                <div id="payoutPercent" class="count" style="font-size:25px;"></div>
                 <img src="/images/loading.gif" id="payoutPercent_load" style="margin: auto; display: block;" />
             </div>
-            <div class="col-md-2 col-sm-2 col-xs-2 tile_stats_count">
+            <div class="col-md-1 tile_stats_count">
                 <span class="count_top"><i class="fa fa-star"></i>Hit Rate</span>
-                <div id="hitRate" class="count">1 In</div>
+                <div id="hitRate" class="count" style="font-size:25px;">1 In</div>
                 <img src="/images/loading.gif" id="hitRate_load" style="margin: auto; display: block;" />
             </div>
         </div>

@@ -526,22 +526,25 @@ function renderTopTilesData(startDate, endDate, cranes) {
         dataType: "json",
         success: function (msg) {
             var data = msg.d;
+            $('#revenue').empty();
+            $('#plays').empty();
+            $('#costOfGoods').empty();
+            $('#revenuePerPlay').empty();
+            $('#payoutPercent').empty();
+            $('#hitRate').empty();
+            $('#wins').empty();
+            $('#prize').empty();
+            $('#craneName').empty();
             for (var i = 0; i < data.length; i++) {
-                $('#revenue').html('$' + data[i].Revenue); 
-                $('#plays').html(data[i].Plays);
-                $('#costOfGoods').html('$' + data[i].CostOfGoodsSold); 
-                $('#revenuePerPlay').html('$' + data[i].RevenuePerPlay); 
-                $('#payoutPercent').html(data[i].PayoutPercent + '%'); 
-                $('#hitRate').html('1 in ' + data[i].HitRate);
-                $('#wins').html(data[i].Wins);
-                $('#prize').html(data[i].Prize);
-                
-                if (cranes.length == 1) {
-                    $('#craneName').html(cranes[i]);
-                }
-                else {
-                    $('#craneName').html("All Cranes");
-                }
+                $('#revenue').append('<div>$' + data[i].Revenue + '</div>'); 
+                $('#plays').append('<div>' + data[i].Plays + '</div>');
+                $('#costOfGoods').append('<div>$' + data[i].CostOfGoodsSold + '</div>'); 
+                $('#revenuePerPlay').append('<div>$' + data[i].RevenuePerPlay + '</div>'); 
+                $('#payoutPercent').append('<div>' + data[i].PayoutPercent + '%</div>'); 
+                $('#hitRate').append('<div>1 in ' + data[i].HitRate + '</div>');
+                $('#wins').append('<div>' + data[i].Wins + '</div>');
+                $('#prize').append('<div>' + data[i].Prize + '</div>');
+                $('#craneName').append('<div>' + data[i].Crane + '</div>');                
             }
         },
         error: function (err) {
