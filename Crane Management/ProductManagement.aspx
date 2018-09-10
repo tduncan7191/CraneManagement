@@ -41,13 +41,17 @@
                                 <asp:TableCell>
                                 <label class='form-control-plaintext'>Prize Description</label>
                                 </asp:TableCell>
-                               <%-- <asp:TableCell>
-                                <label class='form-control-plaintext'>Prize Type</label>      
-                                </asp:TableCell>--%>
                             </asp:TableRow>
                         </asp:Table>
                         <br />
                         <br />
+                        <label>Add New Prize Description</label>
+                        <div class='form-group row'>
+                            <input type='text' id='newPrizeDescription' runat="server" placeholder="Prize Description"/>
+                            <asp:Button ID='addPrizeDescription' runat="server" Text='Add' OnClick="AddPrizeDescription_Click" />
+                            <asp:Button ID="btnSave" style="float:right; margin-right:20%" runat="server" Text="Save Settings" OnClick="BtnSave_ServerClick" />
+                        </div>
+                        <input type="hidden" runat="server" id="hdnNumberOfRows" />
                     </td>
                 </tr>
             </table>

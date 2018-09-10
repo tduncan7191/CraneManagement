@@ -26,6 +26,8 @@ public class DashboardData : WebService
             con.Open();
             using (SqlCommand cmd = new SqlCommand("[dbo].[in_CraneManagement_Data]", con))
             {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
                 foreach (var crane in cranes)
                 {
                     if (string.IsNullOrEmpty(crane))
@@ -34,7 +36,6 @@ public class DashboardData : WebService
                         return returnObjects;
                     }
                     cmd.Parameters.Clear();
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@startDate", startDate);
                     cmd.Parameters.AddWithValue("@endDate", endDate);
                     cmd.Parameters.AddWithValue("@swiperDescription", crane);
