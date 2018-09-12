@@ -75,8 +75,9 @@ public partial class _Default : System.Web.UI.Page
                     {
                         while (reader.Read())
                         {
-                            Session["customerID"] = reader["customerID"].ToString();
+                            customerIDs.Add(reader["customerID"].ToString());
                         }
+                        Session["customerIDs"] = customerIDs;
                         Response.Redirect("Management.aspx");
                     }
                     else

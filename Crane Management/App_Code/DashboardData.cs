@@ -26,8 +26,8 @@ public class DashboardData : WebService
             con.Open();
             using (SqlCommand cmd = new SqlCommand("[dbo].[in_CraneManagement_Data]", con))
             {
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
+				cmd.CommandType = System.Data.CommandType.StoredProcedure;
+				
                 foreach (var crane in cranes)
                 {
                     if (string.IsNullOrEmpty(crane))
