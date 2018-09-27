@@ -1,11 +1,4 @@
-/**
- * Resize function without multiple trigger
- * 
- * Usage:
- * $(window).smartresize(function(){  
- *     // code here
- * });
- */
+
 (function($,sr){
     // debouncing function from John Hann
     // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
@@ -33,11 +26,7 @@
     jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
 
 })(jQuery,'smartresize');
-/**
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
     $BODY = $('body'),
@@ -51,6 +40,8 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
 
 var cranes = [];
 var colors = [];
+var pickerStart = '';
+var pickerEnd = '';
 
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
@@ -544,8 +535,8 @@ function renderTopTilesData(startDate, endDate, cranes) {
                 $('#hitRate').append('<div>1 in ' + data[i].HitRate + '</div>');
                 $('#wins').append('<div>' + data[i].Wins + '</div>');
                 $('#prize').append('<div>' + data[i].Prize + '</div>');
-                $('#craneName').append('<div>' + data[i].Crane + '</div>');                
-            }
+                $('#craneName').append('<div>' + data[i].Crane + '</div>'); 
+            }            
         },
         error: function (err) {
             console.log(err);
@@ -578,13 +569,12 @@ function init_top_tiles() {
     
     console.log('init_top_tiles');
 
-    var startDate = moment().subtract(6, 'days').format('YYYY-MM-D');
-    var endDate = moment().format('YYYY-MM-D');
-
-    renderTopTilesData(startDate, endDate, cranes);
+    pickerStart = moment().subtract(6, 'days').format('YYYY-MM-D');
+    pickerEnd = moment().format('YYYY-MM-D');
+    
+    renderTopTilesData(pickerStart, pickerEnd, cranes);
 } 
-			
-/* STARRR */			
+
 function init_starrr() {
 		
 if( typeof (starrr) === 'undefined'){ return; }
@@ -788,8 +778,7 @@ if ($('#gauge-text2').length){
 	
 	
 }   
-	   	   
-/* SPARKLINES */			
+	   	   			
 function init_sparklines() {
 			
 	if(typeof (jQuery.fn.sparkline) === 'undefined'){ return; }
@@ -904,8 +893,7 @@ function init_sparklines() {
 
 			
 };   
-	   	   
-/* AUTOCOMPLETE */			
+	   	   		
 function init_autocomplete() {
 			
 	if( typeof ($.fn.autocomplete) === 'undefined'){ return; }
@@ -926,8 +914,7 @@ function init_autocomplete() {
 	});
 			
 };
-	   
-/* AUTOSIZE */			
+	   	
 function init_autosize() {
 			
 	if(typeof $.fn.autosize !== 'undefined'){
@@ -937,8 +924,7 @@ function init_autosize() {
 	}
 			
 };  
-	   
-/* PARSLEY */			
+	   	
 function init_parsley() {
 			
 	if( typeof (parsley) === 'undefined'){ return; }
@@ -983,8 +969,7 @@ function init_parsley() {
 		} catch (err) {}
 			
 };
-	   		
-/* INPUTS */		  
+	   			  
 function onAddTag(tag) {
 		alert("Added a tag: " + tag);
 		}
@@ -997,7 +982,6 @@ function onChangeTag(input, tag) {
 		alert("Changed a tag: " + tag);
 		}
 
-//tags input
 function init_TagsInput() {
 				  
 		if(typeof $.fn.tagsInput !== 'undefined'){	
@@ -1009,8 +993,7 @@ function init_TagsInput() {
 		}
 				
 	};
-	   
-/* SELECT2 */	  
+	     
 function init_select2() {
 			 
 	if( typeof (select2) === 'undefined'){ return; }
@@ -1029,7 +1012,6 @@ function init_select2() {
 			
 };
 	   
-/* WYSIWYG EDITOR */
 function init_wysiwyg() {
 			
 if( typeof ($.fn.wysiwyg) === 'undefined'){ return; }
@@ -1101,8 +1083,7 @@ window.prettyPrint;
 prettyPrint();
 	
 };
-	  
-/* CROPPER */		
+	  	
 function init_cropper() {
 			
 			
@@ -1333,9 +1314,7 @@ function init_cropper() {
 			
 			
 };		
-/* CROPPER --- end */  
-	  
-/* KNOB */	  
+
 function init_knob() {
 		
 		if( typeof ($.fn.knob) === 'undefined'){ return; }
@@ -1439,8 +1418,7 @@ function init_knob() {
 		});
 				
 };
-	 
-/* INPUT MASK */			
+	 			
 function init_InputMask() {
 			
 	if( typeof ($.fn.inputmask) === 'undefined'){ return; }
@@ -1449,8 +1427,7 @@ function init_InputMask() {
 		$(":input").inputmask();
 				
 };
-	  
-/* COLOR PICKER */			 
+	  		 
 function init_ColorPicker() {
 			
 	if( typeof ($.fn.colorpicker) === 'undefined'){ return; }
@@ -1471,8 +1448,7 @@ function init_ColorPicker() {
 		$('.demo-auto').colorpicker();
 			
 }; 
-	   	   
-/* ION RANGE SLIDER */			
+	   	   		
 function init_IonRangeSlider() {
 			
 	if( typeof ($.fn.ionRangeSlider) === 'undefined'){ return; }
@@ -1540,8 +1516,7 @@ function init_IonRangeSlider() {
 	});
 			
 };
-	   	   
-/* DATERANGEPICKER */	   
+	   	      
 function init_daterangepicker() {
 
 	if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
@@ -1602,9 +1577,9 @@ function init_daterangepicker() {
 	$('#reportrange').on('apply.daterangepicker', function(ev, picker) {
         console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
 
-        var pickerStart = picker.startDate.format('YYYY-MM-D');
-        var pickerEnd = picker.endDate.format('YYYY-MM-D');    
-
+        pickerStart = picker.startDate.format('YYYY-MM-D');
+        pickerEnd = picker.endDate.format('YYYY-MM-D');
+        
         //renderDateRangePlotChartData(pickerStart, pickerEnd, cranes);
         renderTopTilesData(pickerStart, pickerEnd, cranes);
         //renderPayoutChartData("day", cranes);
@@ -1755,8 +1730,7 @@ function init_daterangepicker_reservation() {
 	});
 	
 }
-	   
-/* SMART WIZARD */		
+	   	
 function init_SmartWizard() {
 			
 	if( typeof ($.fn.smartWizard) === 'undefined'){ return; }
@@ -1774,7 +1748,6 @@ function init_SmartWizard() {
 			
 };
 	   	   
-/* VALIDATOR */
 function init_validator () {
 		 
 if( typeof (validator) === 'undefined'){ return; }
@@ -1809,15 +1782,13 @@ return false;
 });
 	  
 };
-	   
-/* PNotify */			
+	   	
 function init_PNotify() {
 			
 	if( typeof (PNotify) === 'undefined'){ return; }
 	console.log('init_PNotify');
 }; 
-	   	   
-/* CUSTOM NOTIFICATION */			
+	   	   			
 function init_CustomNotification() {
 			
 	console.log('run_customtabs');
@@ -1872,8 +1843,7 @@ function init_CustomNotification() {
 	});
 			
 };
-		
-/* EASYPIECHART */			
+				
 function init_EasyPieChart() {
 				
 		if( typeof ($.fn.easyPieChart) === 'undefined'){ return; }
@@ -2333,8 +2303,7 @@ function init_charts() {
 			
 	}
 }
-
-/* COMPOSE */		
+	
 function init_compose() {
 		
 	if( typeof ($.fn.slideToggle) === 'undefined'){ return; }
@@ -2345,8 +2314,7 @@ function init_compose() {
 	});
 		
 };
-	   
-/* CALENDAR */		  
+	   	  
 function init_calendar() {
 					
 		if( typeof ($.fn.fullCalendar) === 'undefined'){ return; }
@@ -2447,8 +2415,7 @@ function init_calendar() {
 		});
 				
 	};
-	   
-/* DATA TABLES */			
+	   			
 function init_DataTables() {
 				
 		console.log('run_datatables');
@@ -2533,8 +2500,7 @@ function init_DataTables() {
 		TableManageButtons.init();
 				
 	};
-	   
-/* CHART - MORRIS  */		
+	   		
 function init_morris_charts() {
 			
 	if( typeof (Morris) === 'undefined'){ return; }
@@ -2690,7 +2656,6 @@ function init_morris_charts() {
 			
 };
 	   
-/* ECHRTS */
 function init_echarts() {
 		
 		if( typeof (echarts) === 'undefined'){ return; }
@@ -4971,53 +4936,57 @@ $(document).ready(function() {
     var urlHash = window.location.hash;
     var url = urlSearch + urlHash;
     console.log(url);
-        if (url.includes('&')) {
-            var cranesSelected = url.replace("?", '').split("&");            
-            for (var i = 0; i < cranesSelected.length; i++) {
-                cranes.push(cranesSelected[i].split("%20").join(' '));
-            }
+    if (url.includes('&')) {
+        var cranesSelected = url.replace("?", '').split("&");            
+        for (var i = 0; i < cranesSelected.length; i++) {
+            cranes.push(cranesSelected[i].split("%20").join(' '));
         }
-        else {
-            url = url.replace("?", '').split("%20").join(' ');
-            cranes.push(url);
-            colors.push(getRandomColor());
-        }
+    }
+    else {
+        url = url.replace("?", '').split("%20").join(' ');
+        cranes.push(url);
+        colors.push(getRandomColor());
+    }
 
-		init_sparklines();
-        //init_flot_chart();
-        //init_Payout_chart();
-        init_top_tiles();
-		init_sidebar();
-		init_wysiwyg();
-		init_InputMask();
-		init_JQVmap();
-		init_cropper();
-		init_knob();
-		init_IonRangeSlider();
-		init_ColorPicker();
-		init_TagsInput();
-		init_parsley();
-		init_daterangepicker();
-		init_daterangepicker_right();
-		init_daterangepicker_single_call();
-		init_daterangepicker_reservation();
-		init_SmartWizard();
-		init_EasyPieChart();
-		init_charts();
-		init_echarts();
-		init_morris_charts();
-		init_skycons();
-		init_select2();
-		init_validator();
-		init_DataTables();
-		init_chart_doughnut();
-		init_gauge();
-		init_PNotify();
-		init_starrr();
-		init_calendar();
-		init_compose();
-		init_CustomNotification();
-		init_autosize();
-		init_autocomplete();
-				
-	});	
+	init_sparklines();
+    //init_flot_chart();
+    //init_Payout_chart();
+    init_top_tiles();
+	init_sidebar();
+	init_wysiwyg();
+	init_InputMask();
+	init_JQVmap();
+	init_cropper();
+	init_knob();
+	init_IonRangeSlider();
+	init_ColorPicker();
+	init_TagsInput();
+	init_parsley();
+	init_daterangepicker();
+	init_daterangepicker_right();
+	init_daterangepicker_single_call();
+	init_daterangepicker_reservation();
+	init_SmartWizard();
+	init_EasyPieChart();
+	init_charts();
+	init_echarts();
+	init_morris_charts();
+	init_skycons();
+	init_select2();
+	init_validator();
+	init_DataTables();
+	init_chart_doughnut();
+	init_gauge();
+	init_PNotify();
+	init_starrr();
+	init_calendar();
+	init_compose();
+	init_CustomNotification();
+	init_autosize();
+    init_autocomplete();
+    
+    $("#hdnStartDate").val(pickerStart);
+    $("#hdnEndDate").val(pickerEnd);
+    $("#hdnURL").val(url);    
+
+});	

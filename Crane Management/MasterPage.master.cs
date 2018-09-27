@@ -77,7 +77,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                     ParameterList.Add("@Param" + index);
                     index++;
                 }
-                string strCmd = String.Format("SELECT distinct swiperDescription FROM [ProjectX].[dbo].[CraneManagement] WHERE customerID in ({0})", string.Join(",", ParameterList));
+                string strCmd = String.Format("SELECT distinct Crane FROM [ProjectX].[dbo].[CraneManagement] WHERE customerID in ({0})", string.Join(",", ParameterList));
                 cmd.CommandText = strCmd;
                 cmd.Connection = conn;
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -86,7 +86,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                     {
                         while (reader.Read())
                         {
-                            cranes.Add(reader["swiperDescription"].ToString());
+                            cranes.Add(reader["Crane"].ToString());
                             //masterCraneSelection.Items.Add(reader["swiperDescription"].ToString());
                         }
                     }                    

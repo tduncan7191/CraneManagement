@@ -38,7 +38,7 @@ public class DashboardData : WebService
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@startDate", startDate);
                     cmd.Parameters.AddWithValue("@endDate", endDate);
-                    cmd.Parameters.AddWithValue("@swiperDescription", crane);
+                    cmd.Parameters.AddWithValue("@crane", crane);
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -68,7 +68,7 @@ public class DashboardData : WebService
                                     PayoutPercent = reader["PayoutPercent"].ToString(),
                                     HitRate = string.Format("{0:0}", Math.Round(hitRate)),
                                     Wins = reader["wins"].ToString(),
-                                    Prize = reader["PrizeDescription"].ToString()
+                                    Prize = reader["Prize"].ToString()
                                 });
                             }
                         }
@@ -83,7 +83,7 @@ public class DashboardData : WebService
         }
         return returnObjects;
     }
-
+    
     protected TopTilesChartData DefaultTopTiles(string craneName)
     {
         return new TopTilesChartData
@@ -98,18 +98,5 @@ public class DashboardData : WebService
             Wins = "0",
             Prize = "None Selected"
         };
-    }
-
-    public class TopTilesChartData
-    {
-        public string Crane { get; set; }
-        public string Revenue { get; set; }
-        public string Plays { get; set; }
-        public string CostOfGoodsSold { get; set; }
-        public string RevenuePerPlay { get; set; }
-        public string PayoutPercent { get; set; }
-        public string HitRate { get; set; }
-        public string Wins { get; set; }
-        public string Prize { get; set; }
-    }
+    }    
 }

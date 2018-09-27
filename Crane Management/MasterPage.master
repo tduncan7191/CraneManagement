@@ -79,11 +79,6 @@
                              
                             <span id="reportrange"style="background: #fff; cursor: pointer; padding: 8px 10px; border: 1px solid #ccc"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;<span></span><b class="caret"></b></span>
                             
-                            <%--<select id="masterCraneSelection" class="selectpicker" multiple="true" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true" runat="server" required="required"></select>
-                            <asp:button class="btn btn-default" Text="Change Crane Selection" runat="server" OnClick="BtnUpdateCraneSelection_Click" />--%>
-                            <%--<select id="customerIDSelection" class="selectpicker" multiple="true" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true" runat="server" required="required"></select>
-                            <asp:button class="btn btn-default" Text="Change CustomerID Selection" runat="server" OnClick="BtnUpdateCustomerIDSelection_Click" />--%>
-                            
                             <div class="pull-right" style="background: #fff; cursor: pointer; padding: 8px 10px; border: 1px solid #ccc">
                                 <a href="Default.aspx">Log Out<i class="fa fa-sign-out pull-right"></i></a>
                             </div>
@@ -97,8 +92,8 @@
             </div>
         </div>
     </form>
-
-    <!-- jQuery -->
+   
+     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -140,6 +135,7 @@
     <script src="js/custom.js"></script>
      
     <script src="vendors/bootstrap-select/js/bootstrap-select.js"></script>
+        
 </body>
 </html>
 

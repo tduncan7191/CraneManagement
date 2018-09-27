@@ -2,12 +2,16 @@
 
 
 <asp:Content ID="Content" ContentPlaceHolderID="MainContent" runat="Server">
-
-
+    <asp:HiddenField ID="hdnStartDate" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdnEndDate" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdnURL" runat="server" ClientIDMode="Static" />
     <!-- page content -->
     <div class="right_col" role="main">
         <!-- top tiles -->
         <div class="row tile_count">
+            <div class="tile_stats_count">
+                <asp:Button ID="BtnDownload" runat="server" Text="Download CSV" OnClick="BtnDownload_Click" class="btn btn-outline-primary" />
+            </div>
             <div class="col-md-2 tile_stats_count">
                 <span class="count_top"><img src="images/favicon.ico">Crane</span>
                 <div id="craneName" class="count" style="font-size:25px;"></div>
