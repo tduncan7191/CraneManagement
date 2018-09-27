@@ -11,7 +11,7 @@ public partial class Dashboard : Page
     {
 
     }
-    
+
     protected void BtnDownload_Click(object sender, EventArgs e)
     {
         string url = hdnURL.Value;
@@ -66,19 +66,19 @@ public partial class Dashboard : Page
                 }
             }
         }
-        string csv = "CostOfGoodsSold,Crane,HitRate,PayoutPercent,Plays,Prize,Revenue,RevenuePerPlay,Wins\r\n";
+        string csv = "Crane,Prize,Revenue,Plays,Wins,CostOfGoodsSold,RevenuePerPlay,PayoutPercent,HitRate\r\n";
 
         foreach (TopTilesChartData obj in objects)
         {
-            csv += obj.CostOfGoodsSold + ',';
             csv += obj.Crane + ',';
-            csv += obj.HitRate + ',';
-            csv += obj.PayoutPercent + ',';
-            csv += obj.Plays + ',';
             csv += obj.Prize + ',';
             csv += obj.Revenue + ',';
-            csv += obj.RevenuePerPlay + ',';
+            csv += obj.Plays + ',';
             csv += obj.Wins + ',';
+            csv += obj.CostOfGoodsSold + ',';
+            csv += obj.RevenuePerPlay + ',';
+            csv += obj.PayoutPercent + ',';
+            csv += obj.HitRate + ',';
             csv += "\r\n";
         }
 

@@ -60,7 +60,7 @@ public class DashboardData : WebService
                                 }
                                 returnObjects.Add(new TopTilesChartData
                                 {
-                                    Crane = crane,
+                                    Crane = reader["Crane"].ToString(),
                                     Revenue = string.Format("{0:0.00}", revenue),
                                     Plays = reader["Plays"].ToString(),
                                     CostOfGoodsSold = string.Format("{0:0.00}", costOfGoods),
